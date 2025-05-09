@@ -12,14 +12,13 @@ pipeline {
     stages {
         stage('Clone Code') {
             steps {
-                git 'https://github.com/SAHAPRE/my-pipeline-09-2/new/main'
+                git branch: 'main', credentialsId: 'c399a8d0-2318-4d7c-afd3-83c0444fb0de', url: 'https://github.com/SAHAPRE/my-pipeline-09-2.git'
             }
         }
 
         stage('Build Docker Image') {
             steps {
                 sh "docker build -t ${IMAGE_NAME} ."
-                docker build -t new/new1 .
             }
         }
 
