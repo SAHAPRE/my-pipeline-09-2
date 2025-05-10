@@ -16,6 +16,12 @@ pipeline {
             }
         }
 
+        stage('Run Tests') {
+            steps {
+                sh './run_tests.sh'
+            }
+        }
+
         stage('Build Docker Image') {
             steps {
                 sh "docker build -t ${IMAGE_NAME} ."
@@ -42,6 +48,14 @@ pipeline {
                     docker push 950876115206.dkr.ecr.ap-south-1.amazonaws.com/new/new1:latest
                 """
             }
+        }
+    }
+}
+
+post {
+        always {
+            junit 'report.xml'
+            cleanWs()
         }
     }
 }
