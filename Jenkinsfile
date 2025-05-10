@@ -58,4 +58,3 @@ post {
             cleanWs()
         }
     }
-}
