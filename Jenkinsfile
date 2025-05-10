@@ -45,17 +45,10 @@ pipeline {
         stage('Push to ECR') {
             steps {
                 sh """
-                    docker tag new/new1:latest 950876115206.dkr.ecr.ap-south-1.amazonaws.com/new/new1:latest
-                    docker push 950876115206.dkr.ecr.ap-south-1.amazonaws.com/new/new1:latest
+                    docker tag new/new1:latest 950876115206.dkr.ecr.ap-south-1.amazonaws.com/new/new1:latest1
+                    docker push 950876115206.dkr.ecr.ap-south-1.amazonaws.com/new/new1:latest1
                 """
             }
         }
     }
 }
-
-post {
-        always {
-            junit 'report.xml'
-            cleanWs()
-        }
-    }
